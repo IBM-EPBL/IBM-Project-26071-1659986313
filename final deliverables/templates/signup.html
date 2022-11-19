@@ -1,0 +1,73 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<link rel="stylesheet" href="../static/css/signup.css">
+<div class="body">
+    <div class="container text-center body">
+        <div class="row pt-5 ">
+            <div class="col-md-6 offset-md-3 shadow-lg form rounded">
+                <h3 class="">Signup</h3>
+                <p class="mb-3">
+                    Already a user?
+                    <a href="/login">signin</a>
+                </p>
+
+                <form action="{{ url_for('addrec') }}" class="needs-validation" method="POST">
+
+                    <div class="row g-2 mb-2">
+                        <div class="col-md">
+                            <div class="form-floating">
+
+                                <input type="text" class="form-control" id="name" placeholder="Prajeshwar"
+                                    name="name" required />
+                                <label for="name">Name</label>
+
+
+                            </div>
+                        </div>
+                        <div class="col-md">
+                            <div class="form-floating">
+
+                                <input type="text" class="form-control" id="phone"  placeholder="Varadharajan"
+                                    name="phone" required />
+                                <label for="phone">phone</label>
+
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row g-2 mb-3">
+                        <div class="col-md">
+                            <div class="form-floating">
+
+                                <input type="email" class="form-control" id="email"
+                                    placeholder="Prajeshwar@gmail.com" 
+                                    name="email" required />
+                                <label for="email">E-Mail</label>
+
+
+
+                            </div>
+                        </div>
+                        <div class="col-md">
+                            <div class="form-floating">
+
+                                <input type="password" class="form-control" id="password" placeholder="Varadharajan"
+                                 name="password" required />
+                                <label for="password">Password</label>
+
+
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <button class="btn btn-success" type="submit">
+                        Submit
+                    </button>
+                </form>
+
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

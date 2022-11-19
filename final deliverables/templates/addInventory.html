@@ -1,0 +1,133 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<nav class="navbar navbar-expand-lg py-lg-3 navbar-dark">
+    <div class="container">
+
+        <!-- logo -->
+        <a href="index.html" class="navbar-brand me-lg-5">
+            <img src="../static/assets/logo.png" alt="logo" class="logo-dark" height="22" />
+        </a>
+
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
+            aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <!-- menus -->
+        <div class="collapse navbar-collapse" id="navbarNavDropdown">
+
+            <!-- left menu -->
+            <ul class="navbar-nav me-auto align-items-center">
+                <li class="nav-item mx-lg-1">
+                    <a class="nav-link active" href="/dashboard">Home</a>
+                </li>
+                <li class="nav-item ">
+                    <a class="nav-link active" href="/addInventory">Add Inventory</a>
+                </li>
+                <li class="nav-item ">
+                    <a class="nav-link active" href="/history">Stock History</a>
+                </li>
+            </ul>
+
+            <!-- right menu -->
+            <ul class="navbar-nav ms-auto align-items-center">
+                <li class="nav-item me-0">
+                    <div *ngIf="this.authService.isSignedIn() == false">
+                        <a href="/logout" class="btn btn-sm btn-light rounded-pill d-none d-lg-inline-flex">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                class="bi bi-basket-fill pe-1" viewBox="0 0 16 16">
+                                <path
+                                    d="M5.071 1.243a.5.5 0 0 1 .858.514L3.383 6h9.234L10.07 1.757a.5.5 0 1 1 .858-.514L13.783 6H15.5a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-.5.5H15v5a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V9H.5a.5.5 0 0 1-.5-.5v-2A.5.5 0 0 1 .5 6h1.717L5.07 1.243zM3.5 10.5a.5.5 0 1 0-1 0v3a.5.5 0 0 0 1 0v-3zm2.5 0a.5.5 0 1 0-1 0v3a.5.5 0 0 0 1 0v-3zm2.5 0a.5.5 0 1 0-1 0v3a.5.5 0 0 0 1 0v-3zm2.5 0a.5.5 0 1 0-1 0v3a.5.5 0 0 0 1 0v-3zm2.5 0a.5.5 0 1 0-1 0v3a.5.5 0 0 0 1 0v-3z" />
+                            </svg> logout
+                        </a>
+                    </div>  
+                </li>
+            </ul>
+
+        </div>
+    </div>
+</nav>
+<link rel="stylesheet" href="../static/css/signup.css">
+<div class="body">
+    <div class="container text-center body">
+        <div class="row pt-5 ">
+            <div class="col-md-6 offset-md-3 shadow-lg form rounded">
+                <h3 class="">ADD STOCK</h3>
+                <p class="mb-3">
+                    enter details
+                </p>
+
+                <form action="{{ url_for('add') }}" class="needs-validation" method="POST">
+
+                    <div class="row g-2 mb-2">
+                        <div class="col-md">
+                            <div class="form-floating">
+
+                                <input type="text" class="form-control" id="itemName" placeholder="Prajeshwar"
+                                    name="itemName" required />
+                                <label for="itemName">Item Name</label>
+
+
+                            </div>
+                        </div>
+                        <div class="col-md">
+                            <div class="form-floating">
+
+                                <input type="date" class="form-control" id="date"  placeholder="Varadharajan"
+                                    name="date" required />
+                                <label for="date">Date</label>
+
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row g-2 mb-3">
+                        <div class="col-md">
+                            <div class="form-floating">
+
+                                <input type="text" class="form-control" id="itemQuantity"
+                                    placeholder="Prajeshwar@gmail.com" 
+                                    name="itemQuantity" required />
+                                <label for="itemQuantity">Quantity</label>
+
+
+
+                            </div>
+                        </div>
+                        <div class="col-md">
+                            <div class="form-floating">
+
+                                <input type="text" class="form-control" id="itemRate" placeholder="Varadharajan"
+                                 name="itemRate" required />
+                                <label for="itemRate">Rate</label>
+
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-floating mb-3">
+                        <select id="itemCategory" class="form-control" name="itemCategory" placeholder=" ">
+                            <option value="utensils">Utensils</option>
+                            <option value="electronics">Electronics</option>
+                            <option value="books">Books</option>
+                            <option value="furniture">Furniture</option>
+                            <option value="healthcare">Healthcare</option>
+                            <option value="miscellaneous">Miscellaneous</option>
+                        </select>
+                        <div class="cut"></div>
+                        <label for="itemCategory" class="placeholder">Item Category</label>
+
+
+                    </div>
+                    
+                    <button class="btn btn-success" type="submit">
+                        Submit
+                    </button>
+                </form>
+
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

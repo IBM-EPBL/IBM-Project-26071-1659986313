@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+    name: hyper
+spec:
+    replicas: 5
+    selector:
+        matchLabels:
+            app: hyper
+    template:
+        metadata:
+            labels:
+                app: hyper
+        spec:
+            containers:
+                - name: hyper
+                  image: de.icr.io/hyperinventory/hyper
+                  imagePullPolicy: Always
+                  ports:
+                      - containerPort: 5000
+                        protocol: TCP

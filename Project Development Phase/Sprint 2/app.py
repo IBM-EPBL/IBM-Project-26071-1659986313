@@ -55,7 +55,7 @@ def addrec():
     if account:
       return render_template('login.html', msg="You are already a member, please login using your details")
     else:
-      insert_sql = "INSERT INTO USERS (Name,email,phone,password) VALUES (?,?,?,?)"
+      insert_sql = "INSERT INTO USERS (Name,email,phnum,password) VALUES (?,?,?,?)"
       prep_stmt = ibm_db.prepare(conn, insert_sql)
       ibm_db.bind_param(prep_stmt, 1, name)
       ibm_db.bind_param(prep_stmt, 2, email )

@@ -1,0 +1,158 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<link rel="stylesheet" href="../static/css/dashboard.css">
+<nav class="navbar navbar-expand-lg py-lg-3 navbar-dark">
+    <div class="container">
+
+        <!-- logo -->
+        <a href="index.html" class="navbar-brand me-lg-5">
+            <img src="../static/assets/logo.png" alt="logo" class="logo-dark" height="22" />
+        </a>
+
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
+            aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <!-- menus -->
+        <div class="collapse navbar-collapse" id="navbarNavDropdown">
+
+            <!-- left menu -->
+            <ul class="navbar-nav me-auto align-items-center">
+                <li class="nav-item mx-lg-1">
+                    <a class="nav-link active" href="">Home</a>
+                </li>
+                <li class="nav-item ">
+                    <a class="nav-link active" href="/addInventory">Add Inventory</a>
+                </li>
+                <li class="nav-item ">
+                    <a class="nav-link active" href="/history">Stock History</a>
+                </li>
+            </ul>
+
+            <!-- right menu -->
+            <ul class="navbar-nav ms-auto align-items-center">
+                <li class="nav-item me-0">
+                    <div *ngIf="this.authService.isSignedIn() == false">
+                        <a href="/register" class="btn btn-sm btn-light rounded-pill d-none d-lg-inline-flex">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                class="bi bi-basket-fill pe-1" viewBox="0 0 16 16">
+                                <path
+                                    d="M5.071 1.243a.5.5 0 0 1 .858.514L3.383 6h9.234L10.07 1.757a.5.5 0 1 1 .858-.514L13.783 6H15.5a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-.5.5H15v5a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V9H.5a.5.5 0 0 1-.5-.5v-2A.5.5 0 0 1 .5 6h1.717L5.07 1.243zM3.5 10.5a.5.5 0 1 0-1 0v3a.5.5 0 0 0 1 0v-3zm2.5 0a.5.5 0 1 0-1 0v3a.5.5 0 0 0 1 0v-3zm2.5 0a.5.5 0 1 0-1 0v3a.5.5 0 0 0 1 0v-3zm2.5 0a.5.5 0 1 0-1 0v3a.5.5 0 0 0 1 0v-3zm2.5 0a.5.5 0 1 0-1 0v3a.5.5 0 0 0 1 0v-3z" />
+                            </svg> Sign up
+                        </a>
+                    </div>  
+                </li>
+            </ul>
+
+        </div>
+    </div>
+</nav>
+<div class="container text-center">
+    <div class="row mt-5">
+        <div class="col-lg-2 mt-1">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Utensils</h5>
+                    <h1 class="display-3">{{results[0]}}</h1>
+
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-2 mt-1">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Electronics</h5>
+                    <h1 class="display-3">{{results[1]}}</h1>
+
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-2 mt-1">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Furniture</h5>
+                    <h1 class="display-3">{{results[2]}}</h1>
+
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-2 mt-1">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Books</h5>
+                    <h1 class="display-3">{{results[3]}}</h1>
+
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-2 mt-1">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Healthcare</h5>
+                    <h1 class="display-3">{{results[4]}}</h1>
+
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-2 mt-1">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Miscallaneous</h5>
+                    <h1 class="display-3">{{results[5]}}</h1>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6 offset-md-3">
+            <canvas id="myChart" class="chart" width="400" height="400"></canvas>
+            <script>
+                let utensils = '{{results[0]}}'
+                let electronics = '{{results[1]}}'
+                let furniture = '{{results[2]}}'
+                let books = '{{results[3]}}'
+                let healthcare = '{{results[4]}}'
+                let miscellaneous = '{{results[5]}}'
+                console.log('{{results}}')
+                var ctx = document.getElementById('myChart').getContext('2d');
+                var myChart = new Chart(ctx, {
+                    type: 'doughnut',
+                    data: {
+                        labels: ["Utensils"," Electronics","Furniture","Books","Healthcare", "Miscellaneous"],
+                        datasets: [{
+                            label: 'Inventory Chart',
+                            data: [utensils, electronics, furniture, books, healthcare, miscellaneous],
+                            backgroundColor: [
+                                'rgb(255, 99, 132)',
+                                'rgb(0, 255, 0)',
+                                'rgb(255, 205, 86)',
+                                'rgb(201, 203, 207)',
+                                'rgb(54, 162, 235)',
+                                'rgb(255, 0, 0)'
+                            ],
+
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        plugins: {
+                            legend: {
+                                position: 'bottom',
+                            },
+                            title: {
+                                display: true,
+                                text: 'STOCK BREAKDOWN'
+                            }
+                        }
+
+                    }
+                });
+            </script>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<link rel="stylesheet" href="../static/css/signup.css">
+<div class="body align-items-center">
+    <div class="container text-center  pt-5">
+        <div class="row pt-5 ">
+
+            <div class="col-md-6 offset-md-3 shadow-lg form rounded ">
+                <h3 class="">Sign In</h3>
+                <p>New here? <a href="/register">sign up</a></p>
+                <form action="{{ url_for('signIn') }}" method="POST">
+
+
+                    <div class="form-floating mb-3">
+                        <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com"
+                            name="email">
+                        <label for="floatingInput">Email address</label>
+                    </div>
+                    <div class="form-floating mb-3">
+                        <input type="password" class="form-control" id="floatingPassword" placeholder="Password"
+                            name="password">
+                        <label for="floatingPassword">Password</label>
+                    </div>
+                    <button type="submit" class="btn btn-success">Sign In</button>
+                </form>
+
+
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

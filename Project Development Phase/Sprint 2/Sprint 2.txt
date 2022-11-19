@@ -1,1 +1,2 @@
-Sprint
+Sprint 2
+CRUD of products
